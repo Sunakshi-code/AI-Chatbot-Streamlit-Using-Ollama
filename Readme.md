@@ -91,7 +91,7 @@ Follow these steps to run the project locally.
 ### Step 1: Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone -- (https://github.com/Sunakshi-code/AI-Chatbot-Streamlit-Using-Ollama)
 ```
 
 ### Step 2: Navigate to the Project Directory
