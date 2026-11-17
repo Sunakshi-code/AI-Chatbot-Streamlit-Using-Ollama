@@ -1,8 +1,7 @@
-
 import streamlit as st
 import ollama
 
-# 1. PAGE CONFIGURATION
+# PAGE CONFIGURATION
 
 st.set_page_config(
     page_title="AI Chatbot",
@@ -12,30 +11,34 @@ st.set_page_config(
 
 MODEL_NAME = "qwen2.5:1.5b"
 
-# 2. CUSTOM CSS - LIGHT & DARK THEME
+# CUSTOM CSS - LIGHT & DARK THEME
 
 st.markdown("""
 <style>
 
 /* Main Application */
+
 .stApp {
     background: var(--background-color);
     color: var(--text-color);
 }
 
 /* Main Content */
+
 [data-testid="stMainBlockContainer"] {
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
 
 /* Sidebar */
+
 [data-testid="stSidebar"] {
     background: var(--secondary-background-color);
     border-right: 1px solid var(--border-color);
 }
 
 /* Main Heading */
+
 h1 {
     color: var(--text-color) !important;
     font-weight: 800 !important;
@@ -47,6 +50,7 @@ h2, h3, p, label {
 }
 
 /* Chat Messages */
+
 [data-testid="stChatMessage"] {
     background: var(--secondary-background-color) !important;
     border: 1px solid var(--border-color);
@@ -56,6 +60,7 @@ h2, h3, p, label {
 }
 
 /* Chat Message Text */
+
 [data-testid="stChatMessage"] p,
 [data-testid="stChatMessage"] li,
 [data-testid="stChatMessage"] strong {
@@ -63,6 +68,7 @@ h2, h3, p, label {
 }
 
 /* Chat Input */
+
 [data-testid="stChatInput"] {
     background: var(--secondary-background-color);
     border: 1px solid var(--border-color);
@@ -70,12 +76,14 @@ h2, h3, p, label {
 }
 
 /* Input Text */
+
 [data-testid="stChatInput"] textarea {
     color: var(--text-color) !important;
     background: transparent !important;
 }
 
 /* Buttons */
+
 .stButton button {
     border-radius: 12px;
     font-weight: 600;
@@ -85,18 +93,21 @@ h2, h3, p, label {
 }
 
 /* Button Hover */
+
 .stButton button:hover {
     border-color: var(--primary-color);
     color: var(--primary-color);
 }
 
 /* Download Button */
+
 .stDownloadButton button {
     border-radius: 12px;
     font-weight: 600;
 }
 
 /* Select Box */
+
 [data-testid="stSelectbox"] div[data-baseweb="select"] {
     background: var(--secondary-background-color);
     border-radius: 10px;
@@ -104,26 +115,31 @@ h2, h3, p, label {
 }
 
 /* Info Message */
+
 [data-testid="stAlert"] {
     border-radius: 12px;
 }
 
 /* Dividers */
+
 hr {
     border-color: var(--border-color);
 }
 
 /* Code Blocks */
+
 [data-testid="stCode"] {
     border-radius: 10px;
 }
 
 /* Spinner */
+
 .stSpinner > div {
     border-top-color: var(--primary-color);
 }
 
 /* Smooth Appearance */
+
 * {
     transition: background-color 0.2s ease,
                 border-color 0.2s ease;
@@ -133,7 +149,7 @@ hr {
 """, unsafe_allow_html=True)
 
 
-# 3. RESPONSE PERSONALITIES
+# RESPONSE PERSONALITIES
 
 styles = {
     "Friendly": "Respond in a friendly and conversational way.",
@@ -146,7 +162,7 @@ styles = {
 }
 
 
-# 4. SESSION STATE
+# SESSION STATE
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -155,7 +171,7 @@ if "response_style" not in st.session_state:
     st.session_state.response_style = "Friendly"
 
 
-# 5. SIDEBAR
+# SIDEBAR
 
 with st.sidebar:
 
@@ -235,7 +251,7 @@ with st.sidebar:
     st.caption("Powered by Python, Streamlit & Ollama")
 
 
-# 6. MAIN CHAT INTERFACE
+# MAIN CHAT INTERFACE
 
 st.title("🤖 AI Chatbot")
 
@@ -252,7 +268,7 @@ if not st.session_state.messages:
     )
 
 
-# 7. DISPLAY CHAT HISTORY
+# DISPLAY CHAT HISTORY
 
 for message in st.session_state.messages:
 
@@ -261,7 +277,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 
-# 8. USER INPUT
+# USER INPUT
 
 user_input = st.chat_input(
     "Type your message here..."
@@ -281,7 +297,7 @@ if user_input:
         st.markdown(user_input)
 
    
-    # 9. GENERATE OLLAMA RESPONSE
+    # GENERATE OLLAMA RESPONSE
 
     with st.chat_message("assistant"):
 
